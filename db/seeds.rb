@@ -21,6 +21,8 @@ class Seed
       5.times do |j|
         message = group.messages.create!(author: Faker::Name.name, content: Faker::Coffee.notes)
         puts "Message #{j}: author = #{message.author}"
+        comment = message.comments.create!(author: Faker::Name.name, content: Faker::Coffee.notes)
+        puts "Comment #{j}: author = #{comment.author}"
       end
     end
   end
