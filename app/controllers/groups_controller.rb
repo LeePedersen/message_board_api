@@ -36,11 +36,6 @@ class GroupsController < ApplicationController
     end
 
     private
-    # def json_response(object, status = :ok)
-    #   render json: object, status: status
-    # end
-    # this moved to app/controllers/concerns/response.rb
-
     def group_params
       params.permit(:name)
     end

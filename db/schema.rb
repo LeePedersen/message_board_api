@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_29_165306) do
+ActiveRecord::Schema.define(version: 2020_01_29_191137) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,13 +18,20 @@ ActiveRecord::Schema.define(version: 2020_01_29_165306) do
   create_table "comments", force: :cascade do |t|
     t.string "author"
     t.string "content"
-    t.integer "groups_id"
+    t.integer "message_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "groups", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -37,5 +44,12 @@ ActiveRecord::Schema.define(version: 2020_01_29_165306) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "password_hash"
+    t.string "password_salt"
+  end
+
+  add_foreign_key "comments", "messages"
   add_foreign_key "messages", "groups"
 end
